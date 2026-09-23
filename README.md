@@ -1,5 +1,7 @@
 # Guía de Estudio del Instructor: Linux, IA y Prototipos Biomédicos
 
+> 📄 **Documentación del Entorno:** Para revisar la configuración técnica completa del sistema desplegado (Debian 13 trixie, WSL2 modo espejo, usbipd-win y soporte GUI), consulte [ENTORNO_LINUX.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/ENTORNO_LINUX.md).
+
 ### Módulo 1: Arquitectura y Ecosistema Linux
 *   **Gestión del Kernel:** Entender cómo el núcleo administra la memoria, los procesos y la comunicación con el hardware.
 *   **Sistema de Inicialización (systemd):** Estudiar cómo funcionan los servicios en segundo plano y cómo leer los registros del sistema usando `journalctl`.

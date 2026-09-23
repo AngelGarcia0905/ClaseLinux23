@@ -1,5 +1,8 @@
 # Módulo 1: Arquitectura y Ecosistema Linux
 
+> [!NOTE]
+> Para consultar la especificación exacta de la infraestructura instalada en clase (Debian 13 *trixie*, WSL2 en modo *mirrored*, passthrough USB con `usbipd-win`), ver el documento principal [ENTORNO_LINUX.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/ENTORNO_LINUX.md).
+
 ---
 
 ## 1. ¿Qué es Linux?
@@ -102,11 +105,44 @@ Es la herramienta centralizada para consultar los registros (*logs*) recopilados
 * **Aceleración por GPU:** Soporta NVIDIA CUDA directamente desde Linux dentro de Windows para cargas de trabajo de Inteligencia Artificial.
 
 ### ¿Por qué lo usaremos en este curso?
-Permite tener un entorno idéntico a un servidor de producción Linux (con Debian) manteniendo la versatilidad de la máquina anfitriona Windows, garantizando que el código de hardware biomédico, redes y modelos de IA se ejecute de manera profesional sin poner en riesgo el sistema operativo principal.
+Permite tener un entorno idéntico a un servidor de producción Linux (con Debian 13 *trixie*) en modo espejo (*mirrored*), comunicándonos con hardware biomédico por USB mediante `usbipd-win` y manteniendo la versatilidad de la máquina anfitriona Windows.
 
 ---
 
-## 5. Distribuciones Linux y Ventajas de Cada Una
+## 5. Entornos de Escritorio Gráficos (GUI) y ¿Qué es KDE Plasma?
+
+En Linux, la interfaz gráfica no está fusionada rígidamente con el núcleo (como ocurre en Windows o macOS). La interfaz gráfica funciona como una capa modular de software compuesta por:
+1. **Servidor Gráfico / Despliegue:** Wayland o X11.
+2. **Gestor de Ventanas (Window Manager):** Maneja la posición, bordes y animación de las ventanas (ej. KWin, Mutter).
+3. **Entorno de Escritorio (Desktop Environment - DE):** La suite gráfica completa que incluye paneles, barra de tareas, menús y aplicaciones integradas.
+
+### ¿Qué es KDE Plasma?
+**KDE Plasma** es uno de los Entornos de Escritorio más potentes, personalizables y populares del mundo Linux/UNIX.
+
+```
++-------------------------------------------------------------------+
+|                        KDE PLASMA DESKTOP                         |
+|   (Paneles, Widgets, Menú de Aplicaciones, Gestor Dolphin, Konsole)|
++-------------------------------------------------------------------+
+|                  GESTOR DE VENTANAS (KWin)                        |
++-------------------------------------------------------------------+
+|               SERVIDOR DE DESPLIEGUE (Wayland / X11)              |
++-------------------------------------------------------------------+
+|                           LINUX KERNEL                            |
++-------------------------------------------------------------------+
+```
+
+#### Componentes Principales de KDE:
+* **KWin:** El gestor de ventanas predeterminado de KDE, conocido por su aceleración 3D y renderizado fluido.
+* **Dolphin:** El explorador de archivos nativo de KDE, altamente avanzado.
+* **Konsole:** La emulación de terminal nativa de KDE.
+
+#### Evaluación de KDE en WSL2 para nuestra clase:
+En WSL2 se probó la instalación de KDE Plasma, pero se **revirtió limpiamente** porque WSLg ya permite ejecutar aplicaciones gráficas individuales (como Wireshark o editores) como ventanas nativas en Windows sin consumir los ~1.5 GB de memoria RAM adicionales que requiere la carcasa completa del escritorio KDE.
+
+---
+
+## 6. Distribuciones Linux y Ventajas de Cada Una
 
 Una **Distribución Linux** ("Distro") es un paquete integrado por el kernel Linux, utilidades GNU, un gestor de paquetes, controladores y software preconfigurado.
 
@@ -140,7 +176,7 @@ Debian   Ubuntu         RHEL   Fedora/Rocky     Arch     Manjaro
 
 ---
 
-## 6. Servidores: ¿Cuáles Distribuciones Usan y Por Qué?
+## 7. Servidores: ¿Cuáles Distribuciones Usan y Por Qué?
 
 Los servidores de producción (servidores web, infraestructura cloud, clústeres de IA, nodos médicos) priorizan la **estabilidad**, **seguridad** y **predecibilidad** sobre tener la versión más reciente de un software.
 
@@ -151,10 +187,10 @@ Los servidores de producción (servidores web, infraestructura cloud, clústeres
 
 ---
 
-## 7. Ramas de Debian y Por Qué Usaremos Debian en este Curso
+## 8. Ramas de Debian y Por Qué Usaremos Debian en este Curso
 
 Debian organiza su desarrollo en tres ramas principales:
-* **Debian Stable (Estable):** Recibe únicamente parches de seguridad. Es la versión recomendada para servidores y entornos donde la estabilidad sea prioritaria.
+* **Debian Stable (Estable):** Recibe únicamente parches de seguridad. Es la versión recomendada para servidores y entornos donde la estabilidad sea prioritaria (actualmente **Debian 13 *trixie***).
 * **Debian Testing (Pruebas):** Contiene paquetes que han superado pruebas iniciales; se prepara para ser la siguiente versión estable.
 * **Debian Unstable / Sid (Inestable):** Rama de desarrollo continuo donde se prueban las últimas versiones de software.
 

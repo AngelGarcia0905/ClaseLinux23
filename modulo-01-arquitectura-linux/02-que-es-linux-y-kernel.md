@@ -61,3 +61,4 @@ Herramienta para inspeccionar los registros centralizados indexados por `systemd
 * **Comandos de diagnóstico:**
   * `journalctl -u <servicio> -f`: Sigue los logs de un servicio en tiempo real.
   * `journalctl -b`: Filtra los registros correspondientes al arranque actual.
+

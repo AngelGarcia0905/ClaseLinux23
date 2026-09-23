@@ -10,3 +10,4 @@ Para datos biomédicos tabulares y series temporales, los modelos tradicionales 
 * **NumPy & SciPy:** Álgebra matricial y procesamiento digital de señales (filtros de frecuencia para ECG).
 * **Pandas:** Carga y estructuración de DataFrames de salud.
 * **Scikit-learn:** Regresiones, Árboles de Decisión, Random Forest y K-Means.
+

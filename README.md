@@ -1,53 +1,74 @@
 # Guía de Estudio del Instructor: Linux, IA y Prototipos Biomédicos
 
-> 📄 **Documentación del Entorno:** Para revisar la configuración técnica completa del sistema desplegado (Debian 13 trixie, WSL2 modo espejo, usbipd-win y soporte GUI), consulte [ENTORNO_LINUX.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/ENTORNO_LINUX.md).
+> 📄 **Documentación del Entorno:** Para revisar la configuración técnica completa del sistema desplegado (Debian 13 *trixie*, WSL 2 modo espejo, `usbipd-win` y soporte GUI), consulte [ENTORNO_LINUX.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/ENTORNO_LINUX.md).
 
-### Módulo 1: Arquitectura y Ecosistema Linux
-*   **Gestión del Kernel:** Entender cómo el núcleo administra la memoria, los procesos y la comunicación con el hardware.
-*   **Sistema de Inicialización (systemd):** Estudiar cómo funcionan los servicios en segundo plano y cómo leer los registros del sistema usando `journalctl`.
-*   **Ramas de Debian:** Conocer a fondo las diferencias de paquetería y estabilidad entre Debian Stable, Testing y Sid para justificar elecciones de arquitectura.
+---
 
-### Módulo 2: Administración Profunda de Servidores
-*   **Sistemas de Permisos:** Dominar la notación octal (ej. `chmod 755`, `644`) y la gestión avanzada de propietarios con `chown`.
-*   **Seguridad de Acceso:** Configuración detallada de llaves SSH (cifrado Ed25519) y modificación del archivo `sshd_config` para deshabilitar inicios de sesión con contraseñas o acceso root directo.
-*   **Gestión de Usuarios:** Creación de grupos y asignación de privilegios específicos en el archivo `/etc/sudoers`.
+### [Módulo 1: Arquitectura y Ecosistema Linux (Introducción General)](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-01-arquitectura-linux/TEORIA.md)
+* **[01-introduccion-curso-y-roadmap.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-01-arquitectura-linux/01-introduccion-curso-y-roadmap.md):** Visión general del curso y hoja de ruta completa (Módulos 1 al 10).
+* **[02-que-es-linux-y-kernel.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-01-arquitectura-linux/02-que-es-linux-y-kernel.md):** Concepto de GNU/Linux, espacio de usuario vs kernel, syscalls, systemd y journalctl.
+* **[03-wsl2-debian-y-entorno.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-01-arquitectura-linux/03-wsl2-debian-y-entorno.md):** Entorno de clase (WSL 2, Debian 13 *trixie*, modo espejo, usbipd-win, WSLg y KDE Plasma).
+* **[04-distribuciones-y-servidores.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-01-arquitectura-linux/04-distribuciones-y-servidores.md):** Familias de distribuciones, Linux en servidores y justificación de Debian.
 
-### Módulo 3: Redes y Transferencia de Datos
-*   **Modelo TCP/IP:** Comprensión del enrutamiento local, resolución DNS y cómo se abren/cierran los puertos en Linux.
-*   **Firewalls Internos:** Entender cómo la herramienta UFW interactúa por debajo con `iptables` o `nftables`.
-*   **Sincronización:** Uso de `rsync` y `scp` para la transferencia segura de archivos grandes (como datasets médicos) entre entornos locales y servidores.
+---
 
-### Módulo 4: Infraestructura Híbrida para IA (Edge & Cloud)
-*   **Delegación de Cargas (Cloud Computing):** Estudiar cómo funcionan las peticiones a APIs externas (REST) para enviar datos a la nube cuando el hardware local (CPU) no es suficiente.
-*   **Librerías de CPU:** Conocer el funcionamiento de modelos de machine learning clásicos (Scikit-learn, regresiones lineales, árboles de decisión) que no requieren aceleración por GPU.
-*   **Hardware Dedicado (Opcional):** Repasar la arquitectura de CUDA y los núcleos Tensor de NVIDIA, solo para resolver dudas teóricas de los estudiantes.
+### [Módulo 2: Administración Profunda de Servidores](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-02-administracion-servidores/TEORIA.md)
+* **[01-permisos-octales-y-propietarios.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-02-administracion-servidores/01-permisos-octales-y-propietarios.md):** Notación octal/simbólica, lectura/escritura/ejecución y `chown`.
+* **[02-seguridad-ssh-y-hardening.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-02-administracion-servidores/02-seguridad-ssh-y-hardening.md):** Llaves Ed25519, `ssh-copy-id` y configuración de `sshd_config`.
+* **[03-gestion-usuarios-y-sudoers.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-02-administracion-servidores/03-gestion-usuarios-y-sudoers.md):** Comandos `useradd`/`usermod` y sintaxis de `/etc/sudoers` con `visudo`.
 
-### Módulo 5: Arquitectura de Contenedores con Docker
-*   **El Demonio de Docker:** Entender la diferencia entre la arquitectura de un contenedor (que comparte el kernel) y una máquina virtual tradicional.
-*   **Redes y Volúmenes:** Estudiar cómo Docker maneja sus redes internas (bridge/host) y cómo crear volúmenes persistentes para que no se borren las bases de datos médicas si el contenedor se reinicia.
-*   **Construcción de Imágenes:** Escribir archivos `Dockerfile` desde cero, optimizando las capas de instalación de dependencias de Python y Linux.
+---
 
-### Módulo 6: Integración de Hardware Biomédico (PlatformIO)
-*   **Protocolos de Comunicación:** Dominar cómo funcionan físicamente los buses I2C (usado por acelerómetros) y UART/Serial, incluyendo conceptos como bits de parada y paridad.
-*   **Configuración de Entorno:** Entender la estructura de `platformio.ini`, la gestión de dependencias en C++ y las velocidades de transmisión (baud rates).
-*   **Debugging de Hardware en Linux:** Uso intensivo del comando `dmesg` para rastrear cuándo se conecta o desconecta un dispositivo USB y cómo Linux le asigna un puerto (ej. `/dev/ttyACM0`).
+### [Módulo 3: Redes y Transferencia de Datos](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-03-redes-transferencia-datos/TEORIA.md)
+* **[01-modelo-tcpip-y-puertos.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-03-redes-transferencia-datos/01-modelo-tcpip-y-puertos.md):** Pila TCP/IP, resolución DNS y diagnóstico (`ss`, `lsof`, `nc`).
+* **[02-firewalls-ufw-iptables.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-03-redes-transferencia-datos/02-firewalls-ufw-iptables.md):** Netfilter, comandos de UFW y comportamiento en WSL 2.
+* **[03-sincronizacion-rsync-scp.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-03-redes-transferencia-datos/03-sincronizacion-rsync-scp.md):** Transferencia cifrada con `scp` y algoritmos delta con `rsync`.
 
-### Módulo 7: Procesamiento de Flujos de Datos Médicos
-*   **Expresiones Regulares (Regex):** Estudiar la sintaxis para buscar patrones complejos dentro de bases de datos de texto o historiales clínicos.
-*   **Manipulación de Streams:** Dominar los comandos `awk` y `sed` para transformar, limpiar y extraer columnas específicas de datos generados por los sensores.
-*   **Tuberías (Pipes):** Entender cómo redirigir la salida de un proceso hacia la entrada de otro (usando `|`, `>`, `>>`) de forma eficiente sin saturar la RAM.
+---
 
-### Módulo 8: Interacción Avanzada con APIs y Antigravity
-*   **Ingeniería de Prompts para Código:** Aprender a estructurar peticiones técnicas para que los agentes generen scripts funcionales sin alucinaciones.
-*   **Manejo de Respuestas Estructuradas:** Extraer y procesar datos en formato JSON desde la terminal (usando herramientas como `jq`).
-*   **Gestión de Errores Externos:** Estudiar cómo manejar los límites de tasa (rate limits) y las caídas de conexión al comunicarse con los servidores de Google Antigravity.
+### [Módulo 4: Infraestructura Híbrida para IA (Edge & Cloud)](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-04-infraestructura-ia/TEORIA.md)
+* **[01-edge-vs-cloud-computing.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-04-infraestructura-ia/01-edge-vs-cloud-computing.md):** Cómputo en el borde vs nube y arquitecturas híbridas.
+* **[02-librerias-ia-para-cpu.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-04-infraestructura-ia/02-librerias-ia-para-cpu.md):** NumPy, SciPy, Pandas y Scikit-learn para CPU.
+* **[03-hardware-dedicado-cuda-gpus.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-04-infraestructura-ia/03-hardware-dedicado-cuda-gpus.md):** Arquitectura CUDA, Tensor Cores y diagnóstico con `nvidia-smi`.
 
-### Módulo 9: Orquestación y Tareas Programadas
-*   **Automatización con Cron:** Dominar la sintaxis de `crontab` para programar la ejecución de scripts de análisis en momentos específicos.
-*   **Gestión de Variables de Entorno:** Cómo exportar y proteger credenciales (como tokens de acceso a APIs) en archivos `.bashrc` o `.env`.
-*   **Redirección de Errores:** Aprender a separar la salida normal (stdout) de la salida de errores (stderr) para guardar registros de fallas precisos cuando los scripts automáticos se rompan.
+---
 
-### Módulo 10: Troubleshooting de Prototipos Finales
-*   **Depuración Electrónica:** Saber identificar problemas físicos comunes: ruido eléctrico en sensores analógicos, rebotes en señales y caídas de voltaje en la protoboard.
-*   **Monitoreo de Procesos:** Uso avanzado de `htop` o `top` para cazar scripts de IA que se hayan quedado en un bucle infinito consumiendo toda la CPU.
-*   **Análisis de Logs Multi-capa:** Desarrollar la habilidad de rastrear un error desde el hardware (Arduino), pasando por el puerto serial de Linux, hasta la respuesta final de la API de Antigravity.
+### [Módulo 5: Arquitectura de Contenedores con Docker](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-05-docker-contenedores/TEORIA.md)
+* **[01-arquitectura-docker-vs-vms.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-05-docker-contenedores/01-arquitectura-docker-vs-vms.md):** Demonio de Docker, namespaces, cgroups y comparación con VMs.
+* **[02-redes-y-volumenes-docker.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-05-docker-contenedores/02-redes-y-volumenes-docker.md):** Modos de red bridge/host y volúmenes vs bind mounts.
+* **[03-construccion-dockerfile.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-05-docker-contenedores/03-construccion-dockerfile.md):** Sintaxis de Dockerfile, caché de capas y buenas prácticas.
+
+---
+
+### [Módulo 6: Integración de Hardware Biomédico (PlatformIO)](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-06-hardware-biomedico-platformio/TEORIA.md)
+* **[01-protocolos-uart-i2c.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-06-hardware-biomedico-platformio/01-protocolos-uart-i2c.md):** Buses serie UART e I2C para sensores de salud (ECG, SpO2).
+* **[02-configuracion-platformio-ini.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-06-hardware-biomedico-platformio/02-configuracion-platformio-ini.md):** Archivo `platformio.ini`, dependencias C++ y baud rates.
+* **[03-depuracion-hardware-dmesg-dialout.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-06-hardware-biomedico-platformio/03-depuracion-hardware-dmesg-dialout.md):** `dmesg`, grupo `dialout` y passthrough USB con `usbipd-win`.
+
+---
+
+### [Módulo 7: Procesamiento de Flujos de Datos Médicos](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-07-procesamiento-datos-medicos/TEORIA.md)
+* **[01-expresiones-regulares-regex.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-07-procesamiento-datos-medicos/01-expresiones-regulares-regex.md):** Sintaxis de metacaracteres para logs de salud.
+* **[02-manipulacion-streams-awk-sed.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-07-procesamiento-datos-medicos/02-manipulacion-streams-awk-sed.md):** Edición en línea con `sed` y filtrado por columnas con `awk`.
+* **[03-tuberias-redirecciones.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-07-procesamiento-datos-medicos/03-tuberias-redirecciones.md):** Redirecciones (`>`, `>>`, `2>`) y tuberías (`|`).
+
+---
+
+### [Módulo 8: Interacción Avanzada con APIs y Antigravity](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-08-apis-antigravity/TEORIA.md)
+* **[01-ingenieria-prompts-codigo.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-08-apis-antigravity/01-ingenieria-prompts-codigo.md):** Diseño de prompts técnicos para agentes de IA.
+* **[02-procesamiento-json-jq.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-08-apis-antigravity/02-procesamiento-json-jq.md):** Filtrado y transformación de JSON en terminal con `jq`.
+* **[03-gestion-errores-rate-limits.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-08-apis-antigravity/03-gestion-errores-rate-limits.md):** Códigos HTTP (429, 503) y reintentos con backoff.
+
+---
+
+### [Módulo 9: Orquestación y Tareas Programadas](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-09-orquestacion-cron/TEORIA.md)
+* **[01-automatizacion-crontab.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-09-orquestacion-cron/01-automatizacion-crontab.md):** Sintaxis de 5 campos de `crontab` y comandos.
+* **[02-variables-entorno-env.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-09-orquestacion-cron/02-variables-entorno-env.md):** Variables `.env`, `.bashrc` y permisos `chmod 600`.
+* **[03-redireccion-errores-logs-cron.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-09-orquestacion-cron/03-redireccion-errores-logs-cron.md):** Redirección `2>&1` y auditoría de logs.
+
+---
+
+### [Módulo 10: Troubleshooting de Prototipos Finales](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-10-troubleshooting-prototipos/TEORIA.md)
+* **[01-depuracion-electronica-hardware.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-10-troubleshooting-prototipos/01-depuracion-electronica-hardware.md):** Fallas físicas de hardware, ruido en sensores y debounce.
+* **[02-monitoreo-procesos-htop-kill.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-10-troubleshooting-prototipos/02-monitoreo-procesos-htop-kill.md):** Monitoreo de recursos con `htop`, `ps` y terminación con `kill -9`.
+* **[03-analisis-logs-multicapa.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-10-troubleshooting-prototipos/03-analisis-logs-multicapa.md):** Depuración en 4 capas (Hardware ➔ Kernel ➔ Contenedores ➔ API Cloud).

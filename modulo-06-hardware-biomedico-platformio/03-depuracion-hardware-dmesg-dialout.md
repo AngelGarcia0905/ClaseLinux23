@@ -27,3 +27,4 @@ sudo dmesg -wH | grep -E "tty|USB"
   usbipd attach --wsl --busid <BUSID>
   ```
   *Permite mapear la placa física ESP32/CH340 hacia `/dev/ttyUSB0` o `/dev/ttyACM0`.*
+

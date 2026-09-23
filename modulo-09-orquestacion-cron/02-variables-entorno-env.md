@@ -16,3 +16,4 @@ Para evitar fugas de seguridad o lecturas no autorizadas:
 chmod 600 .env
 ```
 *(Asigna permisos exclusivos de lectura/escritura únicamente al propietario).*
+

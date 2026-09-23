@@ -27,3 +27,4 @@ nc -zv 192.168.1.78 22
 # Consultar registros DNS detallados
 dig google.com
 ```
+

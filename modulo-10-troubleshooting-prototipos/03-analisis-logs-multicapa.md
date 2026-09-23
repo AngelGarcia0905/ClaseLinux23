@@ -15,3 +15,4 @@
 2. **Kernel:** `dmesg -wH` y lectura cruda en `/dev/ttyUSB0`.
 3. **Contenedor / Servicio:** `journalctl -u servicio -f` y `docker logs -f`.
 4. **API:** Diagnóstico de códigos HTTP (`429`, `503`).
+

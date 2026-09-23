@@ -18,3 +18,4 @@ Conectan la salida estándar de un proceso con la entrada del siguiente sin util
 ```bash
 cat datos_salud.log | grep "ALERTA" | awk '{print $1, $4}' | sort | uniq -c > informe.txt
 ```
+

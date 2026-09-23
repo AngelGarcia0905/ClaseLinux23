@@ -26,3 +26,4 @@ sudo ufw enable
 ## 3. Matiz de Firewall en WSL 2 (Modo *Mirrored*)
 
 En WSL 2 con modo de red espejo, la interfaz física es administrada prioritariamente por el **Firewall de Windows Host**. Por ello, en el curso demostraremos las reglas de UFW y filtrado `iptables` **dentro de contenedores Docker**, donde cada contenedor mantiene su propio espacio de nombres de red (*network namespace*) independiente.
+

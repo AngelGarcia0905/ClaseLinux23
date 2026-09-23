@@ -16,3 +16,4 @@ El comando `nvidia-smi` monitorea el estado del hardware de video en servidores 
 nvidia-smi
 ```
 Métricas clave: Uso de GPU (%), Consumo de VRAM, Temperatura y Procesos activos de PyTorch/TensorFlow.
+

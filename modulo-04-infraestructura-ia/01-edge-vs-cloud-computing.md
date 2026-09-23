@@ -13,3 +13,4 @@
 
 * **Definición:** Delegación de tareas pesadas (entrenamiento de redes neuronales, inferencia de LLMs) mediante peticiones HTTP REST o WebSockets.
 * **Arquitectura Híbrida:** Limpieza de datos en el borde (Edge) y consulta de modelos complejos en la nube (Cloud).
+

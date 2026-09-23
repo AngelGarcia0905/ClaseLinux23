@@ -38,3 +38,4 @@ operador ALL=(ALL:ALL) ALL
 # Permitir a un grupo reiniciar un servicio específico sin pedir contraseña
 %biomedica ALL=(ALL) NOPASSWD: /bin/systemctl restart servicio-medico
 ```
+

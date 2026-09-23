@@ -37,3 +37,4 @@ La notación octal suma los valores numéricos para cada categoría:
 * **Gestión de Propietarios (`chown`):**
   * `sudo chown usuario:grupo archivo.txt`: Cambia el propietario y el grupo.
   * `sudo chown -R usuario:grupo /directorio`: Aplica el cambio de propietario recursivamente a toda una carpeta.
+

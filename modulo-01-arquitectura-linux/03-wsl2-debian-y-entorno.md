@@ -51,3 +51,4 @@ A diferencia de otros sistemas operativos, la interfaz gráfica en Linux es una 
 ### ¿Qué es KDE Plasma y por qué se revirtió su instalación?
 * **KDE Plasma:** Uno de los entornos gráficos más avanzados y personalizables del mundo Linux.
 * **Evaluación en WSL2:** Se probó su instalación completa (1365 paquetes), pero fue desinstalada limpiamente (`autoremove --purge`). La razón técnica es que **WSLg** ya permite abrir aplicaciones gráficas individuales (como Wireshark) directamente como ventanas integradas en Windows, ahorrando más de 1.5 GB de memoria RAM para nuestros modelos de IA y contenedores Docker.
+

@@ -18,3 +18,4 @@ Reintentar peticiones fallidas incrementando exponencialmente el tiempo de esper
 ```bash
 curl --retry 5 --retry-delay 2 --retry-max-time 30 -H "Authorization: Bearer $API_KEY" https://api.antigravity.ai/v1/query
 ```
+

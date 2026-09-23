@@ -21,3 +21,4 @@ kill -9 <PID>
 # Cierre masivo de procesos de Python desbocados
 killall -9 python3
 ```
+

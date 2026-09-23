@@ -17,3 +17,4 @@ lib_deps =
     sparkfun/SparkFun MAX3010x Pulse and Proximity Sensor Library @ ^1.1.2
     adafruit/Adafruit MPU6050 @ ^2.2.4
 ```
+

@@ -76,3 +76,4 @@ Cada módulo incluye:
 1. **Documentación Teórica Seccionada:** Fundamentos conceptuales detallados en archivos de lectura directa.
 2. **Entorno de Laboratorio Real:** Prácticas ejecutadas sobre Debian 13 en WSL 2.
 3. **Casos de Aplicación Biomédica:** Ejercicios basados en datos de señales de salud reales (ECG, SpO2, telemetría).
+

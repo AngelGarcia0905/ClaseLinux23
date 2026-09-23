@@ -10,3 +10,4 @@ Dado que `cron` ejecuta tareas en segundo plano sin una terminal visible, se deb
 # Guardar salida normal (1) y errores (2) en un único archivo de log
 0 2 * * * /usr/bin/python3 /app/script.py >> /var/log/tarea.log 2>&1
 ```
+

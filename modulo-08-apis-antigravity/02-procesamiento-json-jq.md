@@ -14,3 +14,4 @@ curl -s https://api.antigravity.ai/v1/models | jq '.models[0].name'
 # Convertir arreglo JSON a CSV
 cat datos.json | jq -r '.data[] | [.timestamp, .bpm] | @csv'
 ```
+

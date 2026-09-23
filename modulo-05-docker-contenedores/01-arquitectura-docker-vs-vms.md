@@ -14,3 +14,4 @@
 
 * **Máquinas Virtuales:** Virtualizan hardware completo e incluyen un sistema operativo huésped completo (*Guest OS*).
 * **Contenedores:** Paquetes ligeros sin SO propio; arrancan en milisegundos y consumen una fracción de RAM.
+

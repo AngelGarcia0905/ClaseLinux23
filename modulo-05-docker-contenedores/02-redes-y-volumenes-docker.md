@@ -13,3 +13,4 @@
 
 * **Volúmenes Administrados (`docker volume create datos_db`):** Guardados en `/var/lib/docker/volumes/`. Ideales para bases de datos relacionales o no relacionales.
 * **Montajes Directos (*Bind Mounts*):** Mapeo de directorios locales (`-v $(pwd)/src:/app/src`) para desarrollo continuo.
+

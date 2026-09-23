@@ -13,3 +13,4 @@
 
 * **Comunicación Síncrona Maestro-Esclavo:** Utiliza dos líneas digitales con resistencias de pull-up: **SDA** (datos) y **SCL** (reloj).
 * **Aplicación Biomédica:** Conexión de sensores de electrocardiograma (AD8232), oximetría (MAX30102) y acelerometría (MPU6050) a microcontroladores ESP32/Arduino.
+

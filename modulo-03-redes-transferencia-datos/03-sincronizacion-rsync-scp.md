@@ -21,3 +21,4 @@ rsync -avzP -e "ssh -i ~/.ssh/id_ed25519" ./datos_medicos/ usuario@servidor:/var
 ```
 
 * Flags clave: `-a` (archivar/recursivo), `-v` (detallado), `-z` (comprimir), `-P` (progreso y reanudación).
+

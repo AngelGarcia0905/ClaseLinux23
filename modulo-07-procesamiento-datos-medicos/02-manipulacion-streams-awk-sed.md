@@ -13,3 +13,4 @@
 
 * `awk -F',' '{print $1, $4}' telemetria.csv`: Extracción de columnas específicas.
 * `awk -F',' '$3 > 100 {print "ALERTA:", $0}' paciente.csv`: Filtrado condicional en tiempo real.
+

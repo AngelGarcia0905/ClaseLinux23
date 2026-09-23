@@ -54,3 +54,4 @@ Debian es denominado **"El Sistema Operativo Universal"**. Su desarrollo se orga
 1. **Conocimiento Base Transversal:** Al dominar Debian, se domina automáticamente Ubuntu, Linux Mint y Raspberry Pi OS.
 2. **Estabilidad Inalterable:** Garantiza que las dependencias de Python, C++ y herramientas de red permanezcan funcionales sin romperse por actualizaciones sorpresa.
 3. **Eficiencia en Contenedores:** Formato estándar para imágenes Docker (`debian:slim`).
+

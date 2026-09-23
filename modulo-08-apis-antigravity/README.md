@@ -1,9 +1,8 @@
 # Módulo 8: Interacción Avanzada con APIs y Antigravity
 
-Prompt engineering para código, jq para JSON y manejo de rate limits.
+Ingeniería de prompts para código, extracción de datos JSON con jq y manejo de errores/rate limits.
 
 ## Materiales y Ejercicios
-- [ ] Apuntes teóricos
+- [x] Apuntes teóricos ([TEORIA.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-08-apis-antigravity/TEORIA.md))
 - [ ] Prácticas guiadas
 - [ ] Código de ejemplo
-

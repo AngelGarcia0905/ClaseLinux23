@@ -1,9 +1,8 @@
 # Módulo 6: Integración de Hardware Biomédico (PlatformIO)
 
-I2C, UART, platformio.ini y debugging con dmesg.
+Buses I2C y UART/Serial, configuración con platformio.ini, depuración con dmesg y permisos dialout.
 
 ## Materiales y Ejercicios
-- [ ] Apuntes teóricos
+- [x] Apuntes teóricos ([TEORIA.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-06-hardware-biomedico-platformio/TEORIA.md))
 - [ ] Prácticas guiadas
 - [ ] Código de ejemplo
-

@@ -1,9 +1,8 @@
 # Módulo 2: Administración Profunda de Servidores
 
-Permisos octales, SSH (Ed25519), sshd_config y gestión de sudoers.
+Gestión de usuarios, permisos octales, llaves SSH y hardening con sudoers.
 
 ## Materiales y Ejercicios
-- [ ] Apuntes teóricos
+- [x] Apuntes teóricos ([TEORIA.md](file:///g:/My%20Drive/ClaseLinux/ClaseLinux23/modulo-02-administracion-servidores/TEORIA.md))
 - [ ] Prácticas guiadas
 - [ ] Código de ejemplo
-

@@ -9,10 +9,10 @@ footer: "Jorge Angel Garcia Alvarado  |  2068683  |  IMC"
 style: |
   section {
     font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: 28px;
+    font-size: 25px;
     color: #1f2933;
     background: #ffffff;
-    padding: 70px 90px 60px 90px;
+    padding: 50px 80px 45px 80px;
   }
   section h1 { color: #0B4D2B; font-weight: 600; letter-spacing: -0.5px; }
   section h2 { color: #0B4D2B; font-weight: 600; border-bottom: 3px solid #0B4D2B; padding-bottom: 8px; }
@@ -53,7 +53,7 @@ style: |
     border-left: 28px solid #0B4D2B; justify-content: center; text-align: center;
   }
   section.cierre h1 { font-size: 64px; margin-bottom: 6px; }
-  section.cierre h3 { font-size: 28px; font-weight: 400; color: #52606d; margin: 0; }
+  section.cierre h3 { font-size: 25px; font-weight: 400; color: #52606d; margin: 0; }
 ---
 
 <!-- _class: portada -->

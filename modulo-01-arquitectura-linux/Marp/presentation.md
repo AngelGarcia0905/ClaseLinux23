@@ -9,10 +9,10 @@ footer: "Jorge Angel Garcia Alvarado  |  2068683  |  IMC"
 style: |
   section {
     font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: 28px;
+    font-size: 25px;
     color: #1f2933;
     background: #ffffff;
-    padding: 70px 90px 60px 90px;
+    padding: 50px 80px 45px 80px;
   }
   section h1 { color: #0B4D2B; font-weight: 600; letter-spacing: -0.5px; }
   section h2 { color: #0B4D2B; font-weight: 600; border-bottom: 3px solid #0B4D2B; padding-bottom: 8px; }
@@ -53,7 +53,7 @@ style: |
     border-left: 28px solid #0B4D2B; justify-content: center; text-align: center;
   }
   section.cierre h1 { font-size: 64px; margin-bottom: 6px; }
-  section.cierre h3 { font-size: 28px; font-weight: 400; color: #52606d; margin: 0; }
+  section.cierre h3 { font-size: 25px; font-weight: 400; color: #52606d; margin: 0; }
 ---
 
 <!-- _class: portada -->
@@ -131,22 +131,19 @@ Linux es el sistema operativo que unifica las tres áreas: corre en servidores d
 ## 1.2 (cont.) Arquitectura del Kernel
 
 ```
-[ Aplicación (Python, Docker, Wireshark) ]
-              |
-         (Syscalls)  ← open(), read(), write(), fork(), execve()
-              |
-  +-----------v-----------+
-  |   KERNEL (Anillo 0)   |
-  |  - CFS (Planificador) |
-  |  - VFS (Archivos)     |
-  |  - Drivers (USB, Red) |
-  |  - MM (Memoria)       |
-  +-----------+-----------+
-              |
-     [  Hardware Físico  ]
+  [ Aplicación (Python, Docker, Wireshark) ]
+                     |
+                (Syscalls) ← open(), read(), write(), fork()
+                     |
+         +-----------v-----------+
+         |   KERNEL (Anillo 0)   |
+         |  CFS · VFS · MM · Net|
+         +-----------+-----------+
+                     |
+            [ Hardware Físico ]
 ```
 
-El kernel es el **mediador exclusivo** entre cualquier aplicación y el hardware. Ningún programa toca el disco, la red o la memoria directamente — todo pasa por syscalls.
+El kernel es el **mediador exclusivo** entre cualquier aplicación y el hardware. Ningún programa toca disco, red o memoria directamente.
 
 ---
 
@@ -161,9 +158,9 @@ Si una app en User Space intenta acceder al disco directamente, el kernel la det
 
 ---
 
-## 1.3 `systemd` y `journalctl`
+## 1.3 `systemd` — El Administrador de Servicios
 
-**`systemd` (PID 1):** Primer proceso en arrancar. Administra todos los servicios:
+**`systemd` (PID 1):** Primer proceso en arrancar. Controla todos los servicios del sistema:
 
 ```bash
 systemctl status sshd          # Estado del servidor SSH
@@ -172,13 +169,19 @@ systemctl enable docker        # Inicio automático con el sistema
 systemctl restart networking   # Reiniciar la red
 ```
 
-**`journalctl`:** Gestor centralizado de logs indexados:
+---
+
+## 1.3 (cont.) `journalctl` — Registros Centralizados
+
+**`journalctl`:** Gestor de logs indexados del sistema:
 
 ```bash
 journalctl -u sshd -f          # Seguimiento en tiempo real de SSH
 journalctl --since "1 hour ago" # Logs de la última hora
 journalctl -p err               # Solo errores
 ```
+
+> Todos los servicios escriben en un solo lugar. Ya no es necesario buscar en `/var/log/` archivo por archivo.
 
 ---
 
@@ -206,13 +209,17 @@ En un mundo ideal, cada alumno tendría Linux nativo. En la práctica:
 - Particionar el disco arriesga **pérdida de datos**.
 - Administrar un **dual-boot** con GRUB añade complejidad innecesaria.
 
-### Tres opciones para correr Linux en un equipo Windows:
+Solución: ejecutar Linux **dentro** de Windows, sin modificar el equipo.
 
-| Método | ¿Cómo? | Ventaja | Desventaja |
-|---|---|---|---|
-| **Dual-Boot** | Partición + GRUB | Linux nativo 100% | Hay que reiniciar para cambiar de SO |
-| **Máquina Virtual** | VirtualBox / VMware | Aislamiento total | Pesado (RAM), USB complejo |
-| **WSL 2** | Kernel real + Hyper-V ligero | Arranque instantáneo + USB | Algunas diferencias con nativo |
+---
+
+## 1.4 (cont.) Tres Opciones para Linux en Windows
+
+| Método | Ventaja | Desventaja |
+|---|---|---|
+| **Dual-Boot** | Linux nativo 100% | Hay que reiniciar para cambiar de SO |
+| **Máquina Virtual** | Aislamiento total | Pesado (RAM), USB complejo |
+| **WSL 2** | Arranque instantáneo + USB | Algunas diferencias con nativo |
 
 > **Decisión:** Elegimos **WSL 2** porque combina un kernel Linux real con cero riesgo para las laptops de los alumnos.
 
@@ -220,21 +227,18 @@ En un mundo ideal, cada alumno tendría Linux nativo. En la práctica:
 
 ## 1.5 WSL 2: Arquitectura Técnica
 
-**WSL 2** no es un emulador. Ejecuta un **kernel Linux real** compilado por Microsoft dentro de una máquina virtual ultra-ligera sobre Hyper-V.
+**WSL 2** no es un emulador. Ejecuta un **kernel Linux real** compilado por Microsoft sobre Hyper-V.
 
 ```
-+--------------------------------------------------------+
-|              Windows 10 / 11  (Host)                   |
-+--------------------------+-----------------------------+
-| Apps Windows             | WSL 2 (Debian 13 Trixie)   |
-| (VS Code, PowerShell)    | - Kernel Linux real         |
-|                          | - systemd activo            |
-|                          | - Sistema de archivos ext4  |
-+--------------------------+-----------------------------+
-|        Hipervisor Hyper-V (Capa de Virtualización)     |
-+--------------------------------------------------------+
-|                   Hardware Físico                       |
-+--------------------------------------------------------+
++---------------------------+---------------------------+
+|   Apps Windows            |   WSL 2 (Debian 13)       |
+|   (VS Code, PowerShell)   |   Kernel Linux real       |
+|                           |   systemd + ext4          |
++---------------------------+---------------------------+
+|         Hipervisor Hyper-V (Virtualización)            |
++-------------------------------------------------------+
+|                  Hardware Físico                        |
++-------------------------------------------------------+
 ```
 
 ---
@@ -279,7 +283,7 @@ En un mundo ideal, cada alumno tendría Linux nativo. En la práctica:
 
 ## 1.6 Soporte Gráfico y KDE Plasma
 
-### Capas de la Interfaz Gráfica en Linux:
+### Capas de la GUI en Linux (modular e intercambiable):
 
 ```
 Entorno de Escritorio (KDE, GNOME, XFCE)
@@ -291,11 +295,8 @@ Servidor Gráfico (Wayland / X11)
 Kernel + Drivers
 ```
 
-A diferencia de Windows, la GUI en Linux es **modular e intercambiable**.
-
-**WSLg:** Permite abrir apps gráficas de Linux directamente como ventanas de Windows (Wireshark, editores), sin necesidad de un escritorio completo.
-
-**KDE Plasma** fue evaluado (1365 paquetes) pero revertido: WSLg ahorra +1.5 GB de RAM.
+- **WSLg:** Apps gráficas de Linux abren como ventanas nativas de Windows.
+- **KDE Plasma** fue evaluado (1365 paquetes) pero revertido → WSLg ahorra +1.5 GB de RAM.
 
 ---
 
@@ -313,11 +314,16 @@ A diferencia de Windows, la GUI en Linux es **modular e intercambiable**.
 Debian  Ubuntu  RHEL   Fedora  Arch  Manjaro
 ```
 
+---
+
+## 1.7 (cont.) Comparativa de Familias
+
 | Familia | Paquetes | Gestor | Enfoque |
 |---|---|---|---|
 | **Debian** | `.deb` | `apt` / `dpkg` | Estabilidad y libertad |
 | **Red Hat** | `.rpm` | `dnf` / `yum` | Corporativo, SLAs |
 | **Arch** | `.pkg.tar.zst` | `pacman` | Bleeding-edge, rolling release |
+| **Alpine** | `.apk` | `apk` | Contenedores ultra-ligeros |
 
 ---
 
@@ -358,6 +364,12 @@ Debian es **"El Sistema Operativo Universal"**:
 
 El nombre **Debian** = **Deb**ra (su novia) + **Ian** (él mismo).
 
+Ian falleció en 2017. La comunidad mantiene su legado con más de 1,000 desarrolladores activos en todo el mundo.
+
+---
+
+## 1.8 (cont.) Línea de Tiempo
+
 | Año | Evento |
 |---|---|
 | 1993 | Fundación y Manifiesto Debian |
@@ -365,6 +377,8 @@ El nombre **Debian** = **Deb**ra (su novia) + **Ian** (él mismo).
 | 1998 | Contrato Social de Debian + DFSG |
 | 1999 | Nace `apt`, revolucionando la instalación de software |
 | 2005 | Ubuntu se lanza basándose en Debian |
+| 2015 | Debian 8 *Jessie* — migración a `systemd` |
+| 2025 | Debian 13 *Trixie* — la versión que usamos en clase |
 
 ---
 
@@ -387,22 +401,20 @@ Todas las versiones llevan nombre de un personaje de *Toy Story* de Pixar.
 ## 1.8 (cont.) Las Tres Ramas de Debian
 
 ```
-  Desarrollador sube paquete
-            |
   +---------v---------+
   | Unstable (Sid)    |  ← Paquetes nuevos entran aquí
   +---------+---------+
-            |  (mín. 10 días sin bugs críticos)
+            |  mín. 10 días sin bugs críticos
   +---------v---------+
   | Testing (Trixie)  |  ← Candidata a la siguiente Stable
   +---------+---------+
-            |  (congelamiento + pruebas masivas)
+            |  congelamiento + pruebas masivas
   +---------v---------+
   | Stable (Bookworm) |  ← Solo parches de seguridad
   +-------------------+
 ```
 
-> **Sid** (el niño destructivo de Toy Story) es un nombre permanente que nunca cambia, porque los paquetes en *Unstable* pueden romperse en cualquier momento.
+> **Sid** siempre es la rama *Unstable* (el niño que rompe juguetes). Su nombre nunca cambia.
 
 ---
 
